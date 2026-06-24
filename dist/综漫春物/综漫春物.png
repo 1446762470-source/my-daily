@@ -1,0 +1,105 @@
+{
+  "name": "综漫春物",
+  "description": "",
+  "first_mes": "四月，千叶的樱花正盛。\n\n总武高中的校门口熙熙攘攘，新生们带着忐忑与期待踏进校园。你穿过长长的樱花道，阳光穿过花瓣的缝隙洒在肩上。\n\n今天是开学典礼。教室里、走廊上，到处是陌生的面孔。远处几个女生围在一起叽叽喳喳地说着什么，一个金发女生在里面格外显眼。另一边，一个黑长直的女生独自坐在窗边，安静地翻着手中的文库本。\n\n春风从窗外吹来，带着些许凉意。\n\n你的高二生活，从这里开始。",
+  "creatorcomment": "综漫春物 — 以春物为起点的综漫世界",
+  "data": {
+    "name": "综漫春物",
+    "description": "",
+    "first_mes": "四月，千叶的樱花正盛。\n\n总武高中的校门口熙熙攘攘，新生们带着忐忑与期待踏进校园。你穿过长长的樱花道，阳光穿过花瓣的缝隙洒在肩上。\n\n今天是开学典礼。教室里、走廊上，到处是陌生的面孔。远处几个女生围在一起叽叽喳喳地说着什么，一个金发女生在里面格外显眼。另一边，一个黑长直的女生独自坐在窗边，安静地翻着手中的文库本。\n\n春风从窗外吹来，带着些许凉意。\n\n你的高二生活，从这里开始。",
+    "creator_notes": "综漫春物 — 以春物为起点的综漫世界",
+    "creator": "",
+    "character_version": "1.0.0",
+    "alternate_greetings": [],
+    "extensions": {
+      "world": "综漫春物",
+      "regex_scripts": [
+        {
+          "id": "b50d0bed-ff40-4a25-9ada-14feb4283324",
+          "scriptName": "[界面]状态栏",
+          "disabled": false,
+          "runOnEdit": false,
+          "findRegex": "<StatusPlaceHolderImpl/>",
+          "replaceString": "```\n<body>\n<script>\n$('body').load('http://localhost:6622/综漫春物/界面/状态栏/index.html')\n</script>\n</body>\n```",
+          "trimStrings": [],
+          "placement": [
+            2
+          ],
+          "substituteRegex": 0,
+          "minDepth": null,
+          "maxDepth": null,
+          "markdownOnly": true,
+          "promptOnly": false
+        },
+        {
+          "id": "ea96523f-a1cc-4634-b9d2-f28531adca6c",
+          "scriptName": "[折叠]变量更新",
+          "disabled": false,
+          "runOnEdit": false,
+          "findRegex": "/<status_think>[\\s\\S]*?<\\/status_think>/gsi",
+          "replaceString": "",
+          "trimStrings": [],
+          "placement": [
+            1,
+            2
+          ],
+          "substituteRegex": 0,
+          "minDepth": null,
+          "maxDepth": null,
+          "markdownOnly": true,
+          "promptOnly": false
+        }
+      ],
+      "tavern_helper": {
+        "scripts": [
+          {
+            "name": "浮窗手机",
+            "id": "d50d0bed-ff40-4a25-9ada-14feb4283325",
+            "enabled": true,
+            "type": "script",
+            "content": "(function(){var s=document.createElement('script');s.src='http://localhost:6622/综漫春物/脚本/浮窗手机/loader.js';s.onerror=function(){console.warn('浮窗手机加载失败')};document.head.appendChild(s)})();",
+            "info": "",
+            "button": {
+              "enabled": true,
+              "buttons": []
+            },
+            "data": {},
+            "export_with": {
+              "data": true,
+              "button": true
+            }
+          }
+        ],
+        "variables": {}
+      },
+      "talkativeness": "0.5",
+      "fav": false,
+      "depth_prompt": {
+        "prompt": "",
+        "depth": 4,
+        "role": "system"
+      }
+    },
+    "character_book": {
+      "name": "综漫春物",
+      "entries": []
+    },
+    "personality": "",
+    "scenario": "",
+    "mes_example": "",
+    "system_prompts": "",
+    "post_history_instructions": "",
+    "tags": [],
+    "group_only_greetings": []
+  },
+  "personality": "",
+  "scenario": "",
+  "mes_example": "",
+  "avatar": "none",
+  "talkativeness": "0.5",
+  "fav": false,
+  "tags": [],
+  "spec": "chara_card_v3",
+  "spec_version": "3.0",
+  "create_date": ""
+}
