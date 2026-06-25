@@ -1,7 +1,6 @@
 # ============================================================
 # 自定义数据库表格：角色数值表
 # 用于 AutoCardUpdater 插件（需 SQLite 模式）
-# 对应 MVU 变量中的 stat_data.角色列表
 # ============================================================
 
 名称: 角色数值表
@@ -14,11 +13,11 @@
 DDL: |-
   CREATE TABLE character_metrics ( -- 角色数值表
     row_id INTEGER PRIMARY KEY, -- 行号
-    角色名 TEXT NOT NULL UNIQUE, -- 角色名
-    好感度 INTEGER NOT NULL DEFAULT 0 CHECK(好感度 >= 0 AND 好感度 <= 500), -- 好感度
-    了解度 INTEGER NOT NULL DEFAULT 0 CHECK(了解度 >= 0 AND 了解度 <= 100), -- 了解度
-    自我理解度 INTEGER NOT NULL DEFAULT 0 CHECK(自我理解度 >= 0 AND 自我理解度 <= 100), -- 自我理解度
-    灵魂共鸣度 INTEGER NOT NULL DEFAULT 0 CHECK(灵魂共鸣度 >= 0 AND 灵魂共鸣度 <= 100) -- 灵魂共鸣度
+    name TEXT NOT NULL UNIQUE, -- 角色名
+    affection INTEGER NOT NULL DEFAULT 0 CHECK(affection >= 0 AND affection <= 500), -- 好感度
+    understanding INTEGER NOT NULL DEFAULT 0 CHECK(understanding >= 0 AND understanding <= 100), -- 了解度
+    self_awareness INTEGER NOT NULL DEFAULT 0 CHECK(self_awareness >= 0 AND self_awareness <= 100), -- 自我理解度
+    soul_resonance INTEGER NOT NULL DEFAULT 0 CHECK(soul_resonance >= 0 AND soul_resonance <= 100) -- 灵魂共鸣度
   );
 
 # ---- Note ----
@@ -26,12 +25,12 @@ DDL: |-
 
 Note: |-
   记录每个角色对<user>的四维态度数值。角色在剧情中首次出场时添加，之后随剧情发展更新。
-  - 列0: 行号 - 自动递增的行标识
-  - 列1: 角色名 - 角色的唯一标识名称（如"雪之下雪乃"）
-  - 列2: 好感度 - 角色对<user>的态度（0~500，五阶段）
-  - 列3: 了解度 - 角色对<user>的了解程度（0~100，好感度天花板）
-  - 列4: 自我理解度 - 角色对不完美自我的顺应和认知（0~100）
-  - 列5: 灵魂共鸣度 - 与<user>共度余生的驱动力（0~100，了解度+自我理解度均≥70前锁定为0）
+  - row_id: 行号 - 自动递增
+  - name: 角色名 - 角色的唯一标识名称（如"雪之下雪乃"）
+  - affection: 好感度 - 角色对<user>的态度（0~500，五阶段）
+  - understanding: 了解度 - 角色对<user>的了解程度（0~100，好感度天花板）
+  - self_awareness: 自我理解度 - 角色对不完美自我的顺应和认知（0~100）
+  - soul_resonance: 灵魂共鸣度 - 与<user>共度余生的驱动力（0~100，了解度+自我理解度均≥70前锁定为0）
 
 # ---- 触发器 ----
 
@@ -39,13 +38,13 @@ Note: |-
   Init:
     规则: |-
       此表初始为空。角色在剧情中首次出场时，由 AI 通过 <tableEdit> 插入。
-      初始值：好感度=0, 了解度=0, 自我理解度=0, 灵魂共鸣度=0。
+      初始值：affection=0, understanding=0, self_awareness=0, soul_resonance=0。
 
   Insert:
     规则: |-
       当角色首次在剧情中出场并与<user>产生交互时，插入新行。
       所有数值初始为 0，之后随剧情更新。
-      示例 SQL：INSERT INTO 角色数值表 (角色名, 好感度, 了解度, 自我理解度, 灵魂共鸣度) VALUES ('雪之下雪乃', 0, 0, 0, 0);
+      示例 SQL：INSERT INTO 角色数值表 (name, affection, understanding, self_awareness, soul_resonance) VALUES ('雪之下雪乃', 0, 0, 0, 0);
 
   Update:
     规则: |-
@@ -57,9 +56,9 @@ Note: |-
       - 单次自我理解度变化 ≤ ±8
       - 单次灵魂共鸣度变化 ≤ ±4
       - 灵魂共鸣度仅在了解度≥70且自我理解度≥70时可 > 0
-      示例 SQL：UPDATE 角色数值表 SET 好感度 = 42, 了解度 = 12 WHERE 角色名 = '雪之下雪乃';
+      示例 SQL：UPDATE 角色数值表 SET affection = 42, understanding = 12 WHERE name = '雪之下雪乃';
 
   Delete:
     规则: |-
       通常不删除角色行。仅在角色永久死亡或彻底离开故事时可删除。
-      示例 SQL：DELETE FROM 角色数值表 WHERE 角色名 = '某角色';
+      示例 SQL：DELETE FROM 角色数值表 WHERE name = '某角色';

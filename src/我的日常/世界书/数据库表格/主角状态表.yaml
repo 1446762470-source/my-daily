@@ -1,7 +1,6 @@
 # ============================================================
 # 自定义数据库表格：主角状态表
 # 用于 AutoCardUpdater 插件（需 SQLite 模式）
-# 对应 MVU 变量中的 stat_data.主角
 # ============================================================
 
 名称: 主角状态表
@@ -14,12 +13,12 @@
 DDL: |-
   CREATE TABLE player_state ( -- 主角状态表
     row_id INTEGER PRIMARY KEY, -- 行号
-    姓名 TEXT NOT NULL DEFAULT '', -- 姓名
-    性别 TEXT NOT NULL DEFAULT '', -- 性别
-    年龄 TEXT NOT NULL DEFAULT '', -- 年龄
-    金钱 INTEGER NOT NULL DEFAULT 0 CHECK(金钱 >= 0), -- 金钱
-    当前时间 TEXT NOT NULL DEFAULT '第一天 早晨', -- 当前时间
-    当前地点 TEXT NOT NULL DEFAULT '家中' -- 当前地点
+    name TEXT NOT NULL DEFAULT '', -- 姓名
+    gender TEXT NOT NULL DEFAULT '', -- 性别
+    age TEXT NOT NULL DEFAULT '', -- 年龄
+    money INTEGER NOT NULL DEFAULT 0 CHECK(money >= 0), -- 金钱
+    current_time TEXT NOT NULL DEFAULT '第一天 早晨', -- 当前时间
+    current_location TEXT NOT NULL DEFAULT '家中' -- 当前地点
   );
 
 # ---- Note ----
@@ -27,13 +26,13 @@ DDL: |-
 
 Note: |-
   记录主角的基本信息和状态。此表有且仅有一行（row_id=1）。
-  - 列0: 行号 - 固定为 1
-  - 列1: 姓名 - 主角的姓名（由开场设定界面填入）
-  - 列2: 性别 - 主角的性别（由开场设定界面填入）
-  - 列3: 年龄 - 主角的年龄（由开场设定界面填入）
-  - 列4: 金钱 - 主角持有的日元金额（≥0）
-  - 列5: 当前时间 - 故事中的当前时间
-  - 列6: 当前地点 - 主角当前所在位置
+  - row_id: 行号 - 固定为 1
+  - name: 姓名 - 主角的姓名（由开场设定界面填入）
+  - gender: 性别 - 主角的性别（由开场设定界面填入）
+  - age: 年龄 - 主角的年龄（由开场设定界面填入）
+  - money: 金钱 - 主角持有的日元金额（≥0）
+  - current_time: 当前时间 - 故事中的当前时间
+  - current_location: 当前地点 - 主角当前所在位置
 
 # ---- 触发器 ----
 
@@ -41,7 +40,7 @@ Note: |-
   Init:
     规则: |-
       游戏开始时，由开场设定界面或 AI 首条回复插入唯一一行。
-      示例 SQL：INSERT INTO 主角状态表 (row_id, 姓名, 性别, 年龄, 金钱) VALUES (1, '悠真', '男', '17岁，高中二年级', 0);
+      示例 SQL：INSERT INTO 主角状态表 (row_id, name, gender, age, money) VALUES (1, '悠真', '男', '17岁，高中二年级', 0);
 
   Insert:
     规则: |-
@@ -52,7 +51,7 @@ Note: |-
       姓名、性别、年龄由开场设定填入后通常不改。
       金钱在任务奖励、消费时更新。
       当前时间和地点在剧情推进时更新。
-      示例 SQL：UPDATE 主角状态表 SET 金钱 = 3500, 当前地点 = '总武高中' WHERE row_id = 1;
+      示例 SQL：UPDATE 主角状态表 SET money = 3500, current_location = '总武高中' WHERE row_id = 1;
 
   Delete:
     规则: |-

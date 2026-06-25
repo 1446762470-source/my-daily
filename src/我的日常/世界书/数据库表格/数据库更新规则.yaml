@@ -12,27 +12,27 @@
   数据库更新规则:
 
     主角状态表:
-      金钱:
+      money:
         type: number
         range: "≥ 0"
-        update: UPDATE 主角状态表 SET 金钱 = 金钱 + ${变化量} WHERE row_id = 1;
+        update: UPDATE 主角状态表 SET money = money + ${变化量} WHERE row_id = 1;
         check:
           - 任务完成时根据奖励增加
           - 刷新任务/额外抽卡时花费 500 円
           - 日常消费扣除少量金额
-      当前时间:
+      current_time:
         format: 第${N}天 ${时段}
         check:
           - 每次事件推进、休息或剧情日更替后更新
-      当前地点:
+      current_location:
         check:
           - 主角移动到新场景时更新
 
     角色数值表:
-      ${角色名}.好感度:
+      ${角色名}.affection:
         type: number
         range: 0~500
-        update: UPDATE 角色数值表 SET 好感度 = 好感度 + ${变化量} WHERE 角色名 = '${角色名}';
+        update: UPDATE 角色数值表 SET affection = affection + ${变化量} WHERE name = '${角色名}';
         category:
           0~100: 戒备森严
           101~200: 戒备渐消
@@ -44,10 +44,10 @@
           - 单次变化 ≤ ±10
           - 好感度 ≤ 了解度 × 5
 
-      ${角色名}.了解度:
+      ${角色名}.understanding:
         type: number
         range: 0~100
-        update: UPDATE 角色数值表 SET 了解度 = 了解度 + ${变化量} WHERE 角色名 = '${角色名}';
+        update: UPDATE 角色数值表 SET understanding = understanding + ${变化量} WHERE name = '${角色名}';
         category:
           0~50: 浅层了解
           51~100: 深层理解
@@ -56,10 +56,10 @@
           - 单次变化 ≤ ±6
           - 不会自动增长——必须确获知新信息
 
-      ${角色名}.自我理解度:
+      ${角色名}.self_awareness:
         type: number
         range: 0~100
-        update: UPDATE 角色数值表 SET 自我理解度 = 自我理解度 + ${变化量} WHERE 角色名 = '${角色名}';
+        update: UPDATE 角色数值表 SET self_awareness = self_awareness + ${变化量} WHERE name = '${角色名}';
         category:
           0~50: 逐渐顺应
           51~100: 接纳自我
@@ -67,10 +67,10 @@
           - 意外暴露脆弱 +1~+3，被接纳 +3~+6，主动袒露 +5~+8
           - 单次变化 ≤ ±8
 
-      ${角色名}.灵魂共鸣度:
+      ${角色名}.soul_resonance:
         type: number
         range: 0~100
-        update: UPDATE 角色数值表 SET 灵魂共鸣度 = 灵魂共鸣度 + ${变化量} WHERE 角色名 = '${角色名}';
+        update: UPDATE 角色数值表 SET soul_resonance = soul_resonance + ${变化量} WHERE name = '${角色名}';
         category:
           0: 未解锁
           1~30: 萌芽
@@ -85,9 +85,9 @@
 
     主角背包表:
       物品:
-        insert: INSERT INTO 主角背包表 (物品名称, 物品描述, 数量, 物品类型) VALUES ('${名称}', '${描述}', ${数量}, '${类型}');
-        update: UPDATE 主角背包表 SET 数量 = ${数量} WHERE 物品名称 = '${名称}';
-        delete: DELETE FROM 主角背包表 WHERE 物品名称 = '${名称}';
+        insert: INSERT INTO 主角背包表 (item_name, item_desc, quantity, item_type) VALUES ('${名称}', '${描述}', ${数量}, '${类型}');
+        update: UPDATE 主角背包表 SET quantity = ${数量} WHERE item_name = '${名称}';
+        delete: DELETE FROM 主角背包表 WHERE item_name = '${名称}';
         check:
           - 获得新物品 INSERT，已有物品 UPDATE 数量 +N
           - 使用消耗品数量 -1，归零 DELETE
