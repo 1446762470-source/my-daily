@@ -14,7 +14,7 @@
         enabled: true,
         find_regex: '<OpeningSetup/>',
         replace_string:
-          '<body>\n<script>\n$(\'body\').load(\'http://localhost:6622/我的日常/界面/开场设定/index.html\')\n</script>\n</body>',
+          '<iframe src="https://testingcf.jsdelivr.net/gh/1446762470-source/my-daily/dist/%E6%88%91%E7%9A%84%E6%97%A5%E5%B8%B8/%E7%95%8C%E9%9D%A2/%E5%BC%80%E5%9C%BA%E8%AE%BE%E5%AE%9A/index.html" style="width:100%;height:520px;border:none;"></iframe>',
         trim_strings: [],
         source: { user_input: false, ai_output: true, slash_command: false, world_info: false },
         destination: { display: true, prompt: false },
