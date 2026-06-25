@@ -166,11 +166,9 @@
       启用: true
       查找表达式: <OpeningSetup/>
       内容: |-
-        ```
         <body>
         <iframe src="https://testingcf.jsdelivr.net/gh/1446762470-source/my-daily/dist/%E6%88%91%E7%9A%84%E6%97%A5%E5%B8%B8/%E7%95%8C%E9%9D%A2/%E5%BC%80%E5%9C%BA%E8%AE%BE%E5%AE%9A/index.html" style="width:100%;height:520px;border:none;"></iframe>
         </body>
-        ```
       来源:
         用户输入: false
         AI输出: true
