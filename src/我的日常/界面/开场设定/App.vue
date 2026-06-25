@@ -340,8 +340,11 @@ async function handleStart() {
       });
     });
 
-    triggerSlash('/trigger');
-  } catch { /* 降级 */ }
+    await triggerSlash('/trigger');
+  } catch (e) {
+    console.error('[开场设定] 初始化失败:', e);
+    window.parent.toastr?.error('开场设定初始化失败，请刷新页面重试', '❌');
+  }
 }
 
 // ===== 随机 =====
