@@ -548,7 +548,6 @@ function parse_configuration(entry: Entry): (_env: any, argv: any) => webpack.Co
       const global = {
         jquery: '$',
         lodash: '_',
-        pinia: 'Pinia',
         showdown: 'showdown',
         toastr: 'toastr',
         vue: 'Vue',
