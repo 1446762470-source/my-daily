@@ -168,7 +168,7 @@
       内容: |-
         ```
         <body>
-        <iframe src="https://testingcf.jsdelivr.net/gh/1446762470-source/tavern_resource/dist/%E6%88%91%E7%9A%84%E6%97%A5%E5%B8%B8/%E7%95%8C%E9%9D%A2/%E5%BC%80%E5%9C%BA%E8%AE%BE%E5%AE%9A/index.html" style="width:100%;height:520px;border:none;"></iframe>
+        <iframe src="https://testingcf.jsdelivr.net/gh/1446762470-source/my-daily/dist/%E6%88%91%E7%9A%84%E6%97%A5%E5%B8%B8/%E7%95%8C%E9%9D%A2/%E5%BC%80%E5%9C%BA%E8%AE%BE%E5%AE%9A/index.html" style="width:100%;height:520px;border:none;"></iframe>
         </body>
         ```
       来源:
@@ -300,5 +300,5 @@
           import 'https://testingcf.jsdelivr.net/gh/StageDog/tavern_resource/dist/酒馆助手/自动更新角色卡/index.js';
         数据:
           角色卡名称: 我的日常
-          角色卡链接: https://testingcf.jsdelivr.net/gh/1446762470-source/tavern_resource/我的日常.png
-          更新日志链接: https://testingcf.jsdelivr.net/gh/1446762470-source/tavern_resource/我的日常_更新日志.md
+          角色卡链接: https://testingcf.jsdelivr.net/gh/1446762470-source/my-daily/我的日常.png
+          更新日志链接: https://testingcf.jsdelivr.net/gh/1446762470-source/my-daily/我的日常_更新日志.md
